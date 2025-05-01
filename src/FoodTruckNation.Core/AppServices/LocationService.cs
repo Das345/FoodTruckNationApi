@@ -64,7 +64,9 @@ namespace FoodTruckNation.Core.AppServices
         {
             Location location = _locationRepository.GetLocation(updateLocationCommand.LocationId);
             if (location == null)
+            {
                 return Result.Failure<Location>($"No location was found with the id {updateLocationCommand.LocationId}");
+            }
 
             // Update the properties
             location.Name = updateLocationCommand.Name;
@@ -87,7 +89,9 @@ namespace FoodTruckNation.Core.AppServices
             Location location = _locationRepository.GetLocation(locationId);
 
             if (location == null)
+            {
                 return Result.Failure(new ObjectNotFoundError($"Location id {locationId} not found so it could not be deleted"));
+            }
 
             _locationRepository.Delete(location);
             UnitOfWork.SaveChanges();

@@ -87,7 +87,9 @@ namespace FoodTruckNation.Core.Domain
             Tag other = obj as Tag;
 
             if (other == null)
+            {
                 return false;
+            }
 
             return _tagText == other._tagText;
         }

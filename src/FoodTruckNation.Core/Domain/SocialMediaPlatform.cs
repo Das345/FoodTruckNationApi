@@ -71,7 +71,9 @@ namespace FoodTruckNation.Core.Domain
         public bool IsValidAccountName(string accountName)
         {
             if (!string.IsNullOrWhiteSpace(AccountNameRegex))
+            {
                 Regex.IsMatch(accountName, AccountNameRegex);
+            }
 
             return true;
         }

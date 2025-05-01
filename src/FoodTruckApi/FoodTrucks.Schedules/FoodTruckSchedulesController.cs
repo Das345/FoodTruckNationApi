@@ -57,10 +57,14 @@ namespace FoodTruckNationApi.FoodTrucks.Schedules
         public IActionResult Get(int foodTruckId, [FromQuery]FoodTruckScheduleParameters parameters)
         {
             if (!parameters.StartDate.HasValue)
+            {
                 parameters.StartDate = _dateTimeProvider.CurrentDateTime.Date;
+            }
 
             if (!parameters.EndDate.HasValue)
+            {
                 parameters.EndDate = _dateTimeProvider.CurrentDateTime.AddDays(7).Date;
+            }
 
             var result = _scheduleService.GetSchedulesForFoodTruck(foodTruckId, parameters.StartDate.Value, parameters.EndDate.Value);
             return CreateResponse<List<Schedule>, List<FoodTruckScheduleModel>>(result);

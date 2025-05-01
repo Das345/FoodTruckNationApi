@@ -57,10 +57,14 @@ namespace FoodTruckNationApi.Locations.Schedules
         public IActionResult Get(int locationId, GetLocationSchedulesParameters parameters)
         {
             if (!parameters.StartDate.HasValue)
+            {
                 parameters.StartDate = _dateTimeProvider.CurrentDateTime.Date;
+            }
 
             if (!parameters.EndDate.HasValue)
+            {
                 parameters.EndDate = parameters.StartDate.Value.AddDays(7).Date;
+            }
 
             var result = _scheduleService.GetSchedulesForLocation(locationId,
                 parameters.StartDate.Value, parameters.EndDate.Value);

@@ -126,7 +126,9 @@ namespace FoodTruckNationApi.FoodTrucks
         {
             var platform = platforms.FirstOrDefault(p => p.PlatformId == sma.SocialMediaPlatformId);
             if (platform != null)
+            {
                 return platform.IsValidAccountName(sma.AccountName);
+            }
 
             return false;
         }

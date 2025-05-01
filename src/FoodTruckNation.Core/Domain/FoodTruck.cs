@@ -150,7 +150,9 @@ namespace FoodTruckNation.Core.Domain
             // A different implementation may throw an exception here, but for
             // a food truck tag, it is OK just to return
             if (_tags.Any(t => t.Tag == tag))
+            {
                 return;
+            }
 
             FoodTruckTag foodTruckTag = new FoodTruckTag(this, tag);
             _tags.Add(foodTruckTag);
@@ -177,7 +179,9 @@ namespace FoodTruckNation.Core.Domain
             get
             {
                 if (_reviews.Count == 0)
+                {
                     return 0.0;
+                }
 
                 return _reviews.Average(r => r.Rating);
             }

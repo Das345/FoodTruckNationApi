@@ -50,7 +50,9 @@ namespace FoodTruckNation.Core.AppServices
         {
             var foodTruck = _foodTruckRepository.GetFoodTruck(foodTruckId);
             if (foodTruck == null)
+            {
                 Result.Failure<Schedule>(new ObjectNotFoundError($"No food truck found with id {foodTruckId}"));
+            }
 
             var schedule = _scheduleRepository.GetSchedule(scheduleId);
             return ( schedule != null )
@@ -69,7 +71,9 @@ namespace FoodTruckNation.Core.AppServices
         {
             var foodTruck = _foodTruckRepository.GetFoodTruck(foodTruckId);
             if (foodTruck == null)
+            {
                 Result.Failure<Schedule>(new ObjectNotFoundError($"No food truck found with id {foodTruckId}"));
+            }
 
             var schedules = _scheduleRepository.GetSchedulesForFoodTruck(foodTruckId, startDate, endDate);
             return Result.Success<List<Schedule>>(schedules);
@@ -80,7 +84,9 @@ namespace FoodTruckNation.Core.AppServices
         {
             var location = _locationRepository.GetLocation(locationId);
             if (location == null)
+            {
                 return Result.Failure<List<Schedule>>(new ObjectNotFoundError($"No location with the id {locationId} found"));
+            }
 
             var schedules = _scheduleRepository.GetSchedulesForLocation(locationId, startDate, endDate);
             return Result.Success<List<Schedule>>(schedules);
@@ -91,11 +97,15 @@ namespace FoodTruckNation.Core.AppServices
         {
             var foodTruck = _foodTruckRepository.GetFoodTruck(command.FoodTruckId);
             if (foodTruck == null)
+            {
                 return Result.Failure<Schedule>(new ObjectNotFoundError($"No food truck found with id {command.FoodTruckId}"));
+            }
 
             var location = _locationRepository.GetLocation(command.LocationId);
             if (location == null)
+            {
                 return Result.Failure<Schedule>(new InvalidDataError($"No location with the id {command.LocationId} found"));
+            }
 
             // Create the new schedule object and add it to the food truck
             Schedule schedule = new Schedule(foodTruck, location, command.StartTime, command.EndTime);
@@ -114,15 +124,21 @@ namespace FoodTruckNation.Core.AppServices
         {
             var foodTruck = _foodTruckRepository.GetFoodTruck(command.FoodTruckId);
             if (foodTruck == null)
+            {
                 return Result.Failure<Schedule>(new ObjectNotFoundError($"No food truck found with id {command.FoodTruckId}"));
+            }
 
             var location = _locationRepository.GetLocation(command.LocationId);
             if (location == null)
+            {
                 return Result.Failure<Schedule>(new InvalidDataError($"No location with the id {command.LocationId} found"));
+            }
 
             Schedule schedule = foodTruck.Schedules.FirstOrDefault(s => s.ScheduleId == command.ScheduleId);
             if (schedule == null)
+            {
                 return Result.Failure<Schedule>(new ObjectNotFoundError($"No schedule found with id {command.ScheduleId}"));
+            }
 
             schedule.Location = location;
             schedule.ScheduledStart = command.StartTime;
@@ -140,11 +156,15 @@ namespace FoodTruckNation.Core.AppServices
         {
             var foodTruck = _foodTruckRepository.GetFoodTruck(foodTruckId);
             if (foodTruck == null)
+            {
                 return Result.Failure(new ObjectNotFoundError($"No food truck with the id {foodTruckId} found so the schedule could not be deleted"));
+            }
 
             var schedule = foodTruck.Schedules.FirstOrDefault(s => s.ScheduleId == scheduleId);
             if (schedule == null)
+            {
                 return Result.Failure(new ObjectNotFoundError($"No schedule with the id {scheduleId} found so the schedule could not be deleted"));
+            }
 
             schedule.CancelScheduledAppointment();
 

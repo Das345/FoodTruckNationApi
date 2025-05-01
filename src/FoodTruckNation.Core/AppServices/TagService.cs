@@ -115,7 +115,9 @@ namespace FoodTruckNation.Core.AppServices
                 Tag tag = _tagRepository.GetTagById(updateTagCommand.TagId);
 
                 if (tag == null)
+                {
                     return Result.Failure<Tag>(new ObjectNotFoundError($"No tag was found with the id of {updateTagCommand.TagId}"));
+                }
 
                 tag.Text = updateTagCommand.TagText;
 

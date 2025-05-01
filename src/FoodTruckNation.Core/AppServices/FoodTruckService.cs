@@ -78,9 +78,7 @@ namespace FoodTruckNation.Core.AppServices
             // Social Media Accounts
             foreach (var accountInfo in foodTruckInfo.SocialMediaAccounts)
             {
-                var platform = _socialMediaPlatformRepository.GetSocialMediaPlatform(accountInfo.SocialMediaPlatformId);
-                if (platform == null)
-                    throw new InvalidDataException($"The id {accountInfo.SocialMediaPlatformId} is not a valid social media platform id");
+                var platform =  _socialMediaPlatformRepository.GetSocialMediaPlatform(accountInfo.SocialMediaPlatformId)  ?? throw new InvalidDataException($"The id {accountInfo.SocialMediaPlatformId} is not a valid social media platform id");
 
                 SocialMediaAccount account = new SocialMediaAccount(platform, foodTruck, accountInfo.AccountName);
                 foodTruck.AddSocialMediaAccount(account);
@@ -128,7 +126,9 @@ namespace FoodTruckNation.Core.AppServices
                 var foodTruck = _foodTruckRepository.GetFoodTruck(foodTruckInfo.FoodTruckId);
 
                 if (foodTruck == null)
+                {
                     return Result.Failure<FoodTruck>(new ObjectNotFoundError($"No food truck found with the id of {foodTruckInfo.FoodTruckId}"));
+                }
 
                 // Handle Properties
                 foodTruck.Name = foodTruckInfo.Name;
@@ -142,7 +142,7 @@ namespace FoodTruckNation.Core.AppServices
 
                 return Result.Success<FoodTruck>(foodTruck);
             }
-            catch (DBConcurrencyException ce)
+            catch (DBConcurrencyException)
             {
                 // If there is a database conflict, then data access layer (like EF) will throw a DbConcurrencyException, so we catch it and turn
                 // it into an error to be passed up the stack with the existing object
@@ -167,7 +167,9 @@ namespace FoodTruckNation.Core.AppServices
             FoodTruck foodTruck = _foodTruckRepository.GetFoodTruck(foodTruckId);
 
             if (foodTruck == null)
+            {
                 return Result.Failure(new ObjectNotFoundError($"Food truck id {foodTruckId} not found so it could not be deleted"));
+            }
 
             _foodTruckRepository.Delete(foodTruck);
             UnitOfWork.SaveChanges();
@@ -183,7 +185,9 @@ namespace FoodTruckNation.Core.AppServices
             // Get the Food Truck object
             var foodTruck = _foodTruckRepository.GetFoodTruck(foodTruckId);
             if (foodTruck == null)
+            {
                 return Result.Failure<FoodTruck>(new ObjectNotFoundError("No food truck with the id of {foodTruckId} could be found"));
+            }
 
             // Converts tag strings into tag objects (including creating tags that don't exist)
             var tagObjects = DecodeTags(tags);
@@ -203,7 +207,9 @@ namespace FoodTruckNation.Core.AppServices
             // Get the Food Truck object
             var foodTruck = _foodTruckRepository.GetFoodTruck(foodTruckId);
             if (foodTruck == null)
+            {
                 return Result.Failure<FoodTruck>(new ObjectNotFoundError("No food truck with the id of {foodTruckId} could be found"));
+            }
 
             // Handle Tags on Object but not in Input list (i.e. tags to be removed)
             var removedTags = foodTruck.Tags.WhereNotExists(tags, (foodTruckTag, inputTag) => ( foodTruckTag.Tag.Text == inputTag ));
@@ -231,11 +237,15 @@ namespace FoodTruckNation.Core.AppServices
             // Get the Food Truck object
             var foodTruck = _foodTruckRepository.GetFoodTruck(foodTruckId);
             if (foodTruck == null)
+            {
                 return Result.Failure<FoodTruck>(new ObjectNotFoundError("No food truck with the id of {foodTruckId} could be found"));
+            }
 
             var tagToRemove = foodTruck.Tags.FirstOrDefault(t => t.Tag.Text.Equals(tag, StringComparison.CurrentCultureIgnoreCase));
             if (tagToRemove == null)
+            {
                 return Result.Failure<FoodTruck>(new ObjectNotFoundError("No tag of {tag} found on the food truck with the id of {foodTruckId}"));
+            }
 
             foodTruck.RemoveTag(tagToRemove);
 
@@ -253,11 +263,15 @@ namespace FoodTruckNation.Core.AppServices
         {
             var foodTruck = _foodTruckRepository.GetFoodTruck(foodTruckId);
             if (foodTruck == null)
+            {
                 return Result.Failure<SocialMediaAccount>(new ObjectNotFoundError("No food truck with the id of {foodTruckId} could be found"));
+            }
 
             var platform = _socialMediaPlatformRepository.GetSocialMediaPlatform(socialMediaPlatformId);
             if (platform == null)
+            {
                 return Result.Failure<SocialMediaAccount>(new InvalidDataError("No social media platform with the id {socialMediaPlatformId} could be found"));
+            }
 
             SocialMediaAccount account = new SocialMediaAccount(platform, foodTruck, accountName);
             foodTruck.AddSocialMediaAccount(account);
@@ -273,11 +287,15 @@ namespace FoodTruckNation.Core.AppServices
         {
             var foodTruck = _foodTruckRepository.GetFoodTruck(foodTruckId);
             if (foodTruck == null)
+            {
                 return Result.Failure<SocialMediaAccount>(new ObjectNotFoundError("No food truck with the id of {foodTruckId} could be found"));
+            }
 
             SocialMediaAccount account = foodTruck.SocialMediaAccounts.FirstOrDefault(a => a.SocialMediaAccountId == socialMediaAccountId);
             if (account == null)
+            {
                 return Result.Failure<SocialMediaAccount>(new ObjectNotFoundError($"No social media account with with the id {socialMediaAccountId} could be found on the food truck with id {foodTruckId}"));
+            }
 
             account.AccountName = accountName;
 
@@ -292,15 +310,21 @@ namespace FoodTruckNation.Core.AppServices
         {
             var foodTruck = _foodTruckRepository.GetFoodTruck(foodTruckId);
             if (foodTruck == null)
+            {
                 return Result.Failure(new ObjectNotFoundError("No food truck with the id of {foodTruckId} could be found"));
+            }
 
             var platform = _socialMediaPlatformRepository.GetSocialMediaPlatform(socialMediaPlatformId);
             if (platform == null)
+            {
                 return Result.Failure(new ObjectNotFoundError($"No social media platform with the id {socialMediaPlatformId} could be found"));
+            }
 
             SocialMediaAccount account = foodTruck.SocialMediaAccounts.FirstOrDefault(a => a.PlatformId == socialMediaPlatformId);
             if (account == null)
+            {
                 return Result.Failure(new ObjectNotFoundError($"No social media account with for {platform.Name} could be found on the food truck with id {foodTruckId}"));
+            }
 
             foodTruck.RemoveSocialMediaAccount(account);
 
@@ -319,7 +343,9 @@ namespace FoodTruckNation.Core.AppServices
             FoodTruck foodTruck = _foodTruckRepository.GetFoodTruck(foodTruckId);
 
             if (foodTruck == null)
+            {
                 return Result.Failure<List<Review>>(new ObjectNotFoundError("No food truck with the id of {foodTruckId} could be found"));
+            }
 
             return Result.Success<List<Review>>(foodTruck.Reviews);
         }
@@ -329,7 +355,9 @@ namespace FoodTruckNation.Core.AppServices
             FoodTruck foodTruck = _foodTruckRepository.GetFoodTruck(foodTruckId);
 
             if (foodTruck == null)
+            {
                 return Result.Failure<Review>(new ObjectNotFoundError("No food truck with the id of {foodTruckId} could be found"));
+            }
 
             var review = foodTruck.Reviews.FirstOrDefault(r => r.ReviewId == reviewId);
             return Result.Success<Review>(review);
@@ -341,7 +369,9 @@ namespace FoodTruckNation.Core.AppServices
             FoodTruck foodTruck = _foodTruckRepository.GetFoodTruck(command.FoodTruckId);
 
             if (foodTruck == null)
+            {
                 return Result.Failure<Review>(new ObjectNotFoundError("No food truck with the id of {foodTruckId} could be found"));
+            }
 
             Review review = new Review(foodTruck, _dateTimeProvider.CurrentDateTime, command.Rating, command.Comments);
             foodTruck.AddReview(review);
