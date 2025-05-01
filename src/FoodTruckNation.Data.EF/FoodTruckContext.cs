@@ -1,9 +1,5 @@
 using FoodTruckNation.Core.Domain;
-using DavidBerry.Framework.Domain;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.Extensions.Logging;
-using System;
 
 namespace FoodTruckNation.Data.EF
 {

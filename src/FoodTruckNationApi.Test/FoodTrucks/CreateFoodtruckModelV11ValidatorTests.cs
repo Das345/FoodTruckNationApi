@@ -4,9 +4,7 @@ using FoodTruckNation.Core.Domain;
 using FoodTruckNationApi.FoodTrucks;
 using DavidBerry.Framework.Functional;
 using Moq;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace FoodTruckNationApi.Test.FoodTrucks

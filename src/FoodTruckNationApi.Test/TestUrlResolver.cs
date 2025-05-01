@@ -1,8 +1,5 @@
 using AutoMapper;
 using DavidBerry.Framework.ApiUtil;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FoodTruckNationApi.Test
 {

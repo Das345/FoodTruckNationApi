@@ -4,12 +4,10 @@ using FoodTruckNation.Core.DataInterfaces;
 using FoodTruckNation.Core.Domain;
 using DavidBerry.Framework.Data;
 using DavidBerry.Framework.TimeAndDate;
-using DavidBerry.Framework.Exceptions;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using DavidBerry.Framework.Functional;
 
 namespace FoodTruckNation.Core.AppServices

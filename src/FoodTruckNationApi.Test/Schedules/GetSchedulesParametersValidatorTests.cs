@@ -1,8 +1,6 @@
-﻿using FluentAssertions;
+using FluentAssertions;
 using FoodTruckNationApi.Schedules;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace FoodTruckNationApi.Test.Schedules

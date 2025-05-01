@@ -1,7 +1,5 @@
 using FoodTruckNation.Core.AppInterfaces;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using FoodTruckNation.Core.Domain;
 using FoodTruckNation.Core.DataInterfaces;
 using DavidBerry.Framework.Functional;

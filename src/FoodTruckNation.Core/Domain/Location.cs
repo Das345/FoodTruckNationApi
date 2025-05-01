@@ -1,9 +1,5 @@
 using DavidBerry.Framework.Domain;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
 
 namespace FoodTruckNation.Core.Domain
 {

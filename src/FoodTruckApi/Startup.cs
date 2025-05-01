@@ -1,10 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using AutoMapper;
-using FluentValidation.AspNetCore;
 using FoodTruckNation.Core;
 using FoodTruckNation.Data.EF;
 using DavidBerry.Framework.ApiUtil;
@@ -19,7 +16,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using FluentValidation;
-using Microsoft.AspNetCore.Identity;
 using FoodTruckNationApi.FoodTrucks;
 
 namespace FoodTruckApi

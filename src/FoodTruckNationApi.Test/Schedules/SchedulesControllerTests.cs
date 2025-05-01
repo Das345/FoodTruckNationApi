@@ -2,14 +2,12 @@ using AutoMapper;
 using FoodTruckNation.Core.AppInterfaces;
 using FoodTruckNation.Core.Domain;
 using FoodTruckNationApi.Schedules;
-using DavidBerry.Framework;
 using DavidBerry.Framework.Functional;
 using DavidBerry.Framework.TimeAndDate;
 using Microsoft.Extensions.Logging;
 using Moq;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace FoodTruckNationApi.Test.Schedules

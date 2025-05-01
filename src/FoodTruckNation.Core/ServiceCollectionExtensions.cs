@@ -1,9 +1,6 @@
-﻿using FoodTruckNation.Core.AppInterfaces;
+using FoodTruckNation.Core.AppInterfaces;
 using FoodTruckNation.Core.AppServices;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FoodTruckNation.Core
 {

@@ -2,10 +2,8 @@ using FoodTruckNation.Core.Domain;
 using FoodTruckNation.Core.DataInterfaces;
 using DavidBerry.Framework.Data;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace FoodTruckNation.Data.EF.Repositories
 {

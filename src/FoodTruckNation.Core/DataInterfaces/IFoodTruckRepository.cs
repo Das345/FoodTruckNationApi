@@ -1,7 +1,6 @@
-﻿using FoodTruckNation.Core.Domain;
+using FoodTruckNation.Core.Domain;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace FoodTruckNation.Core.DataInterfaces
 {

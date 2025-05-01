@@ -1,7 +1,3 @@
-using DavidBerry.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using DavidBerry.Framework.Domain;
 
 namespace FoodTruckNation.Core.Domain

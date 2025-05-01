@@ -1,12 +1,9 @@
-using System;
 using System.Collections.Generic;
-using System.Text;
 using FoodTruckNation.Core.Domain;
 using FoodTruckNation.Core.DataInterfaces;
 using Microsoft.Extensions.Logging;
 using FoodTruckNation.Core.Commands;
 using DavidBerry.Framework.Data;
-using DavidBerry.Framework.Exceptions;
 using FoodTruckNation.Core.AppInterfaces;
 using DavidBerry.Framework.Functional;
 

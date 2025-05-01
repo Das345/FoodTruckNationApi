@@ -1,8 +1,5 @@
 using FluentAssertions;
 using FoodTruckNationApi.Locations;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace FoodTruckNationApi.Test.Locations

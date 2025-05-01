@@ -3,12 +3,7 @@ using FoodTruckNation.Data.EF.Repositories;
 using DavidBerry.Framework.Data;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Sqlite;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FoodTruckNation.Data.EF
 {

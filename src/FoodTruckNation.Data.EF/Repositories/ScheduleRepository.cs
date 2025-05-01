@@ -1,7 +1,6 @@
 using FoodTruckNation.Core.DataInterfaces;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using FoodTruckNation.Core.Domain;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;

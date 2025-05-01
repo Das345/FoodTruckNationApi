@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using FoodTruckNation.Core.Domain;
@@ -8,8 +7,6 @@ using FoodTruckNation.Core.AppInterfaces;
 using AutoMapper;
 using DavidBerry.Framework.ApiUtil.Models;
 using DavidBerry.Framework.ApiUtil.Controllers;
-using DavidBerry.Framework;
-using DavidBerry.Framework.Exceptions;
 
 namespace FoodTruckNationApi.FoodTrucks
 {

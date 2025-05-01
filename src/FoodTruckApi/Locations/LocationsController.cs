@@ -1,15 +1,9 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using FoodTruckNation.Core.Domain;
 using Microsoft.Extensions.Logging;
-using DavidBerry.Framework.ApiUtil;
 using FoodTruckNation.Core.AppInterfaces;
 using FoodTruckNation.Core.Commands;
-using DavidBerry.Framework;
 using AutoMapper;
 using DavidBerry.Framework.ApiUtil.Models;
 using DavidBerry.Framework.ApiUtil.Controllers;
