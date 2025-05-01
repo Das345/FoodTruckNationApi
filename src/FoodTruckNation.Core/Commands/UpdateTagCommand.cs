@@ -6,7 +6,7 @@ namespace FoodTruckNation.Core.Commands
     {
         public int TagId { get; set; }
 
-        public String TagText { get; set; }
+        public string TagText { get; set; }
 
     }
 }

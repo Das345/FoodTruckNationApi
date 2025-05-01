@@ -9,7 +9,7 @@ namespace FoodTruckNation.Core.Commands
 
         public int Rating { get; set; }
 
-        public String Comments { get; set; }
+        public string Comments { get; set; }
 
     }
 }

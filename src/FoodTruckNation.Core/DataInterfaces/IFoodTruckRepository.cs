@@ -22,7 +22,7 @@ namespace FoodTruckNation.Core.DataInterfaces
 
 
 
-        IList<FoodTruck> GetFoodTruckByTag(String tag);
+        IList<FoodTruck> GetFoodTruckByTag(string tag);
 
 
         void Save(FoodTruck foodTruck);

@@ -109,9 +109,6 @@ namespace FoodTruckApi
                     return actionApiVersionModel.ImplementedApiVersions.Any(v => $"v{v.ToString()}" == docName);
                 });
 
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                options.IncludeXmlComments(xmlPath);
                 options.CustomSchemaIds(x => x.FullName.Replace("+", "."));
             });
         }

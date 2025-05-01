@@ -13,7 +13,7 @@ namespace FoodTruckNation.Core.DataInterfaces
 
         Tag GetTagById(int id);
 
-        Tag GetTagByName(String name);
+        Tag GetTagByName(string name);
 
         void SaveTag(Tag tag);
 

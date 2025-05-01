@@ -36,7 +36,7 @@ namespace FoodTruckNationApi.FoodTrucks.Reviews
         /// <summary>
         /// Additional comments left on the review
         /// </summary>
-        public String Comments { get; set; }
+        public string Comments { get; set; }
 
         /// <summary>
         /// Metadata object containing the URL links to related information for this review
