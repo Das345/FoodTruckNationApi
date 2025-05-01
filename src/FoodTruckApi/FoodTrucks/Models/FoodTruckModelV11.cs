@@ -2,10 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
-using DavidBerry.Framework.ApiUtil;
 using FoodTruckNation.Core.Domain;
-using FoodTruckNationApi.FoodTrucks.Schedules;
-
+using DavidBerry.Framework.ApiUtil;
 
 namespace FoodTruckNationApi.FoodTrucks
 {
@@ -170,7 +168,7 @@ namespace FoodTruckNationApi.FoodTrucks
                     opt => opt.MapFrom<UrlResolver, RouteUrlInfo>(src =>
                         new RouteUrlInfo()
                         {
-                            RouteName = FoodTruckSchedulesController.GET_FOOD_TRUCK_SCHEDULE,
+                            RouteName = Schedules.FoodTruckSchedulesController.GET_FOOD_TRUCK_SCHEDULE,
                             RouteParams = new { foodTruckId = src.FoodTruckId }
                         }
                     )
