@@ -6,16 +6,9 @@ using System.Linq;
 
 namespace FoodTruckNation.Data.EF.Repositories
 {
-    public class SocialMediaPlatformRepository : ISocialMediaPlatformRepository
+    public class SocialMediaPlatformRepository(FoodTruckContext context) : ISocialMediaPlatformRepository
     {
-
-        public SocialMediaPlatformRepository(FoodTruckContext context)
-        {
-            _foodTruckContext = context;
-        }
-
-
-        private readonly FoodTruckContext _foodTruckContext;
+        private readonly FoodTruckContext _foodTruckContext = context;
 
 
         public SocialMediaPlatform GetSocialMediaPlatform(int platformId)

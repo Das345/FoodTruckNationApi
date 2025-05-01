@@ -3,17 +3,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FoodTruckNation.Data.EF
 {
-    public class FoodTruckContext : DbContext
+    public class FoodTruckContext(DbContextOptions options) : DbContext(options)
     {
-
-        public FoodTruckContext(DbContextOptions options) : base(options)
-        {
-
-        }
-
-
-
-
         public DbSet<FoodTruck> FoodTrucks { get; set; }
 
         public DbSet<Tag> Tags { get; set; }

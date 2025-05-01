@@ -12,27 +12,19 @@ namespace FoodTruckNationApi.FoodTrucks.Tags
     /// <summary>
     /// API Controller used to get and add/update tags to a food truck
     /// </summary>
+    /// <remarks>
+    /// Creates a new FoodTruckTagsController
+    /// </remarks>
+    /// <param name="logger">An ILogger object used to log messages from this controller</param>
+    /// <param name="mapper">An Automapper IMapper object used for object mapping within this controller</param>
+    /// <param name="foodTruckService">An IFoodTruckService object that contains the business logic for food truck functions</param>
     [Produces("application/json")]
     [Route("api/FoodTrucks/{foodTruckId}/Tags")]
     [ApiVersion("1.0")]
     [ApiVersion("1.1")]
-    public class FoodTruckTagsController : ApiControllerBase
+    public class FoodTruckTagsController(ILogger<FoodTruckTagsController> logger, IMapper mapper, IFoodTruckService foodTruckService) : ApiControllerBase(logger, mapper)
     {
-
-        /// <summary>
-        /// Creates a new FoodTruckTagsController
-        /// </summary>
-        /// <param name="logger">An ILogger object used to log messages from this controller</param>
-        /// <param name="mapper">An Automapper IMapper object used for object mapping within this controller</param>
-        /// <param name="foodTruckService">An IFoodTruckService object that contains the business logic for food truck functions</param>
-        public FoodTruckTagsController(ILogger<FoodTruckTagsController> logger, IMapper mapper, IFoodTruckService foodTruckService)
-            : base(logger, mapper)
-        {
-            _foodTruckService = foodTruckService;
-        }
-
-
-        private readonly IFoodTruckService _foodTruckService;
+        private readonly IFoodTruckService _foodTruckService = foodTruckService;
 
 
         /// <summary>

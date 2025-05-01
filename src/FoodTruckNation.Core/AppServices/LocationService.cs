@@ -9,20 +9,14 @@ using DavidBerry.Framework.Functional;
 
 namespace FoodTruckNation.Core.AppServices
 {
-    public class LocationService : BaseService, ILocationService
+    public class LocationService(ILoggerFactory loggerFactory, IUnitOfWork uow, ILocationRepository locationRepository) : BaseService(loggerFactory, uow), ILocationService
     {
-
-        public LocationService(ILoggerFactory loggerFactory, IUnitOfWork uow, ILocationRepository locationRepository)
-            : base(loggerFactory, uow)
-        {
-            _locationRepository = locationRepository;
-        }
 
 
         #region Member Variables
 
 
-        private readonly ILocationRepository _locationRepository;
+        private readonly ILocationRepository _locationRepository = locationRepository;
 
         #endregion
 

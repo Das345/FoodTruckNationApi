@@ -7,16 +7,9 @@ using System.Linq;
 
 namespace FoodTruckNation.Data.EF.Repositories
 {
-    public class LocationRepository : ILocationRepository
+    public class LocationRepository(FoodTruckContext context) : ILocationRepository
     {
-
-        public LocationRepository(FoodTruckContext context)
-        {
-            _foodTruckContext = context;
-        }
-
-
-        private readonly FoodTruckContext _foodTruckContext;
+        private readonly FoodTruckContext _foodTruckContext = context;
 
 
 

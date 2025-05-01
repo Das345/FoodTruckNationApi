@@ -15,25 +15,19 @@ namespace FoodTruckNationApi.Locations
     /// <summary>
     /// Controller containing endpoints related to locations where food trucks gather at
     /// </summary>
+    /// <remarks>
+    /// Create a new LocationsController
+    /// </remarks>
+    /// <param name="logger">An ILogger instance to be used for any logging from this controller</param>
+    /// <param name="locationService">An ILocationService of the service layer object for this controller to use</param>
+    /// <param name="mapper">An IMapper class used by this controller to map objects</param>
     [Produces("application/json")]
     [Route("api/Locations")]
     [ApiVersion("1.0")]
     [ApiVersion("1.1")]
-    public class LocationsController : ApiControllerBase
+    public class LocationsController(ILogger<LocationsController> logger, ILocationService locationService, IMapper mapper) : ApiControllerBase(logger, mapper)
     {
-        /// <summary>
-        /// Create a new LocationsController
-        /// </summary>
-        /// <param name="logger">An ILogger instance to be used for any logging from this controller</param>
-        /// <param name="locationService">An ILocationService of the service layer object for this controller to use</param>
-        /// <param name="mapper">An IMapper class used by this controller to map objects</param>
-        public LocationsController(ILogger<LocationsController> logger, ILocationService locationService, IMapper mapper)
-            : base(logger, mapper)
-        {
-            _locationService = locationService;
-        }
-
-        private readonly ILocationService _locationService;
+        private readonly ILocationService _locationService = locationService;
 
 
         #region Constants

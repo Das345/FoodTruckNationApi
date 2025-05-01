@@ -16,27 +16,19 @@ namespace FoodTruckNationApi.FoodTrucks
     /// in this controller.  Child objects have their own controllers that are of the form FoodTruck{Child Object}Contoller,
     /// for example, FoodTruckReviewsController
     /// </summary>
+    /// <remarks>
+    /// Creates a new FoodTruckController
+    /// </remarks>
+    /// <param name="logger">An ILogger object used to for any logging inside of this controller</param>
+    /// <param name="mapper">An Automapper IMapper object used for object mapping within this controller</param>
+    /// <param name="foodTruckService">An IFoodTruckService object that contains the business logic for food truck functions</param>
     [Produces("application/json")]
     [Route("api/FoodTrucks")]
     [ApiVersion("1.0")]
     [ApiVersion("1.1")]
-    public class FoodTrucksController : ApiControllerBase
+    public class FoodTrucksController(ILogger<FoodTrucksController> logger, IMapper mapper, IFoodTruckService foodTruckService) : ApiControllerBase(logger, mapper)
     {
-
-        /// <summary>
-        /// Creates a new FoodTruckController
-        /// </summary>
-        /// <param name="logger">An ILogger object used to for any logging inside of this controller</param>
-        /// <param name="mapper">An Automapper IMapper object used for object mapping within this controller</param>
-        /// <param name="foodTruckService">An IFoodTruckService object that contains the business logic for food truck functions</param>
-        public FoodTrucksController(ILogger<FoodTrucksController> logger, IMapper mapper, IFoodTruckService foodTruckService)
-            : base(logger, mapper)
-        {
-            _foodTruckService = foodTruckService;
-        }
-
-
-        private readonly IFoodTruckService _foodTruckService;
+        private readonly IFoodTruckService _foodTruckService = foodTruckService;
 
 
         #region Route Constants

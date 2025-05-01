@@ -17,19 +17,11 @@ namespace FoodTruckNationApi.Schedules
     [Route("api/Schedules")]
     [ApiVersion("1.0")]
     [ApiVersion("1.1")]
-    public class SchedulesController : ApiControllerBase
+    public class SchedulesController(ILogger<SchedulesController> logger, IMapper mapper,
+        IScheduleService scheduleService, IDateTimeProvider dateTimeProvider) : ApiControllerBase(logger, mapper)
     {
-
-        public SchedulesController(ILogger<SchedulesController> logger, IMapper mapper,
-            IScheduleService scheduleService, IDateTimeProvider dateTimeProvider) : base(logger, mapper)
-        {
-            _scheduleService = scheduleService;
-            _dateTimeProvider = dateTimeProvider;
-        }
-
-
-        private readonly IScheduleService _scheduleService;
-        private readonly IDateTimeProvider _dateTimeProvider;
+        private readonly IScheduleService _scheduleService = scheduleService;
+        private readonly IDateTimeProvider _dateTimeProvider = dateTimeProvider;
 
         /// <summary>
         /// Gets a list of food truck schedules (appointments) for all food trucks for

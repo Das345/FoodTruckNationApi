@@ -13,30 +13,23 @@ namespace FoodTruckNationApi.Locations.Schedules
     /// <summary>
     /// API Endpoints related to the schedules of food trucks at a given location
     /// </summary>
+    /// <remarks>
+    /// Creates a LocationSchedulesController, the controller responsible for returning schedules
+    /// (appointments) for a specific location
+    /// </remarks>
+    /// <param name="logger"></param>
+    /// <param name="mapper"></param>
+    /// <param name="scheduleService"></param>
+    /// <param name="dateTimeProvider"></param>
     [Produces("application/json")]
     [Route("api/Locations/{locationId}/Schedules")]
     [ApiVersion("1.0")]
     [ApiVersion("1.1")]
-    public class LocationSchedulesController : ApiControllerBase
+    public class LocationSchedulesController(ILogger<LocationSchedulesController> logger, IMapper mapper,
+        IScheduleService scheduleService, IDateTimeProvider dateTimeProvider) : ApiControllerBase(logger, mapper)
     {
-        /// <summary>
-        /// Creates a LocationSchedulesController, the controller responsible for returning schedules
-        /// (appointments) for a specific location
-        /// </summary>
-        /// <param name="logger"></param>
-        /// <param name="mapper"></param>
-        /// <param name="scheduleService"></param>
-        /// <param name="dateTimeProvider"></param>
-        public LocationSchedulesController(ILogger<LocationSchedulesController> logger, IMapper mapper,
-            IScheduleService scheduleService, IDateTimeProvider dateTimeProvider)
-            : base(logger, mapper)
-        {
-            _dateTimeProvider = dateTimeProvider;
-            _scheduleService = scheduleService;
-        }
-
-        private readonly IDateTimeProvider _dateTimeProvider;
-        private readonly IScheduleService _scheduleService;
+        private readonly IDateTimeProvider _dateTimeProvider = dateTimeProvider;
+        private readonly IScheduleService _scheduleService = scheduleService;
 
         #region Route Name Constants
 

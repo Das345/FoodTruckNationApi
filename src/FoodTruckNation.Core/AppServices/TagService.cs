@@ -10,17 +10,9 @@ using DavidBerry.Framework.Functional;
 
 namespace FoodTruckNation.Core.AppServices
 {
-    public class TagService : BaseService, ITagService
+    public class TagService(ILoggerFactory loggerFactory, IUnitOfWork uow, ITagRepository tagRepository) : BaseService(loggerFactory, uow), ITagService
     {
-
-        public TagService(ILoggerFactory loggerFactory, IUnitOfWork uow, ITagRepository tagRepository)
-            : base(loggerFactory, uow)
-        {
-            _tagRepository = tagRepository;
-        }
-
-
-        private readonly ITagRepository _tagRepository;
+        private readonly ITagRepository _tagRepository = tagRepository;
 
 
         public Result<IList<Tag>> GetAllTags()

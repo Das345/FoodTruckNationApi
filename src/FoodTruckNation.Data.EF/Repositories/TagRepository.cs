@@ -7,14 +7,9 @@ using DavidBerry.Framework.Data;
 
 namespace FoodTruckNation.Data.EF.Repositories
 {
-    public class TagRepository : ITagRepository
+    public class TagRepository(FoodTruckContext context) : ITagRepository
     {
-        public TagRepository(FoodTruckContext context)
-        {
-            _dataContext = context;
-        }
-
-        private readonly FoodTruckContext _dataContext;
+        private readonly FoodTruckContext _dataContext = context;
 
 
         public IList<Tag> GetAllTags()

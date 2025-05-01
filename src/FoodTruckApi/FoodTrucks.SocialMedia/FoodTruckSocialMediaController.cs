@@ -13,24 +13,18 @@ namespace FoodTruckNationApi.Api.FoodTrucks.SocialMedia
     /// <summary>
     /// API Controller to get/add/update social media accounts for a food truck
     /// </summary>
+    /// <remarks>
+    /// Initializes a new instance of the <see cref="FoodTruckSocialMediaController"/> class.
+    /// </remarks>
+    /// <param name="logger">The logger instance.</param>
+    /// <param name="mapper">The mapper instance.</param>
+    /// <param name="foodTruckService">The food truck service instance.</param>
     [Produces("application/json")]
     [Route("api/FoodTrucks/{foodTruckId}/SocialMediaAccounts")]
     [ApiVersion("1.1")]
-    public class FoodTruckSocialMediaController : ApiControllerBase
+    public class FoodTruckSocialMediaController(ILogger<FoodTruckSocialMediaController> logger, IMapper mapper, IFoodTruckService foodTruckService) : ApiControllerBase(logger, mapper)
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="FoodTruckSocialMediaController"/> class.
-        /// </summary>
-        /// <param name="logger">The logger instance.</param>
-        /// <param name="mapper">The mapper instance.</param>
-        /// <param name="foodTruckService">The food truck service instance.</param>
-        public FoodTruckSocialMediaController(ILogger<FoodTruckSocialMediaController> logger, IMapper mapper, IFoodTruckService foodTruckService)
-            : base(logger, mapper)
-        {
-            _foodTruckService = foodTruckService;
-        }
-
-        private readonly IFoodTruckService _foodTruckService;
+        private readonly IFoodTruckService _foodTruckService = foodTruckService;
 
         internal const string GET_FOOD_TRUCK_SOCIAL_ACCOUNTS = "GetFoodTruckSocialMediaAccounts";
 

@@ -13,27 +13,19 @@ namespace FoodTruckNationApi.Tags
     /// <summary>
     /// Controller for API endpoints dealing with tags
     /// </summary>
+    /// <remarks>
+    /// Creates a new TagsController
+    /// </remarks>
+    /// <param name="logger">An ILoggerFactory of the factory class used to create an ILogger instance for use in this controller</param>
+    /// <param name="mapper">An AutoMapper IMapper instance used to perform object mapping in the controller</param>
+    /// <param name="tagService">An iTagService instance of the tag service object where the business logic for tag functions resides</param>
     [Produces("application/json")]
     [Route("api/Tags")]
     [ApiVersion("1.0")]
     [ApiVersion("1.1")]
-    public class TagsController : ApiControllerBase
+    public class TagsController(ILogger<TagsController> logger, IMapper mapper, ITagService tagService) : ApiControllerBase(logger, mapper)
     {
-
-        /// <summary>
-        /// Creates a new TagsController
-        /// </summary>
-        /// <param name="logger">An ILoggerFactory of the factory class used to create an ILogger instance for use in this controller</param>
-        /// <param name="mapper">An AutoMapper IMapper instance used to perform object mapping in the controller</param>
-        /// <param name="tagService">An iTagService instance of the tag service object where the business logic for tag functions resides</param>
-        public TagsController(ILogger<TagsController> logger, IMapper mapper, ITagService tagService)
-            : base(logger, mapper)
-        {
-            _tagService = tagService;
-        }
-
-
-        private readonly ITagService _tagService;
+        private readonly ITagService _tagService = tagService;
 
 
         /// <summary>

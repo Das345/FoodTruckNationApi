@@ -12,27 +12,17 @@ using DavidBerry.Framework.Functional;
 
 namespace FoodTruckNation.Core.AppServices
 {
-    public class ScheduleService : BaseService, IScheduleService
+    public class ScheduleService(ILoggerFactory loggerFactory, IUnitOfWork uow, IDateTimeProvider dateTimeProvider,
+        IFoodTruckRepository foodTruckRepository, ILocationRepository locationRepository, IScheduleRepository scheduleRepository) : BaseService(loggerFactory, uow), IScheduleService
     {
-
-
-        public ScheduleService(ILoggerFactory loggerFactory, IUnitOfWork uow, IDateTimeProvider dateTimeProvider,
-            IFoodTruckRepository foodTruckRepository, ILocationRepository locationRepository, IScheduleRepository scheduleRepository)
-            : base(loggerFactory, uow)
-        {
-            _dateTimeProvider = dateTimeProvider;
-            _foodTruckRepository = foodTruckRepository;
-            _locationRepository = locationRepository;
-            _scheduleRepository = scheduleRepository;
-        }
 
 
         #region Member Variables
 
-        private readonly IDateTimeProvider _dateTimeProvider;
-        private readonly IFoodTruckRepository _foodTruckRepository;
-        private readonly ILocationRepository _locationRepository;
-        private readonly IScheduleRepository _scheduleRepository;
+        private readonly IDateTimeProvider _dateTimeProvider = dateTimeProvider;
+        private readonly IFoodTruckRepository _foodTruckRepository = foodTruckRepository;
+        private readonly ILocationRepository _locationRepository = locationRepository;
+        private readonly IScheduleRepository _scheduleRepository = scheduleRepository;
 
         #endregion
 

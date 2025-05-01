@@ -15,27 +15,17 @@ using DavidBerry.Framework.Functional;
 
 namespace FoodTruckNation.Core.AppServices
 {
-    public class FoodTruckService : BaseService, IFoodTruckService
+    public class FoodTruckService(ILoggerFactory loggerFactory, IUnitOfWork uow, IDateTimeProvider dateTimeProvider,
+        IFoodTruckRepository foodTruckRepository, ITagRepository tagRepository, ISocialMediaPlatformRepository socialMediaPlatformRepository) : BaseService(loggerFactory, uow), IFoodTruckService
     {
-
-
-        public FoodTruckService(ILoggerFactory loggerFactory, IUnitOfWork uow, IDateTimeProvider dateTimeProvider,
-            IFoodTruckRepository foodTruckRepository, ITagRepository tagRepository, ISocialMediaPlatformRepository socialMediaPlatformRepository)
-            : base(loggerFactory, uow)
-        {
-            _dateTimeProvider = dateTimeProvider;
-            _foodTruckRepository = foodTruckRepository;
-            _tagRepository = tagRepository;
-            _socialMediaPlatformRepository = socialMediaPlatformRepository;
-        }
 
 
         #region Member Variables
 
-        private readonly IDateTimeProvider _dateTimeProvider;
-        private readonly IFoodTruckRepository _foodTruckRepository;
-        private readonly ITagRepository _tagRepository;
-        private readonly ISocialMediaPlatformRepository _socialMediaPlatformRepository;
+        private readonly IDateTimeProvider _dateTimeProvider = dateTimeProvider;
+        private readonly IFoodTruckRepository _foodTruckRepository = foodTruckRepository;
+        private readonly ITagRepository _tagRepository = tagRepository;
+        private readonly ISocialMediaPlatformRepository _socialMediaPlatformRepository = socialMediaPlatformRepository;
 
         #endregion
 

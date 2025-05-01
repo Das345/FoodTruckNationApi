@@ -14,27 +14,19 @@ namespace FoodTruckNationApi.FoodTrucks.Reviews
     /// <summary>
     /// Controller to expose endpoints relating to reviews of food trucks (getting and posting reviews)
     /// </summary>
+    /// <remarks>
+    /// Creates a new FoodTruckReviewsController
+    /// </remarks>
+    /// <param name="logger">An ILogger used for any logging in the controller</param>
+    /// <param name="mapper">An IMapper object used for mapping ViewModel objects in the controller</param>
+    /// <param name="foodTruckService">An IFoodTruckService object used for getting and positing food truck review data</param>
     [Produces("application/json")]
     [Route("api/FoodTrucks/{foodTruckId}/Reviews")]
     [ApiVersion("1.0")]
     [ApiVersion("1.1")]
-    public class FoodTruckReviewsController : ApiControllerBase
+    public class FoodTruckReviewsController(ILogger<FoodTruckReviewsController> logger, IMapper mapper, IFoodTruckService foodTruckService) : ApiControllerBase(logger, mapper)
     {
-
-        /// <summary>
-        /// Creates a new FoodTruckReviewsController
-        /// </summary>
-        /// <param name="logger">An ILogger used for any logging in the controller</param>
-        /// <param name="mapper">An IMapper object used for mapping ViewModel objects in the controller</param>
-        /// <param name="foodTruckService">An IFoodTruckService object used for getting and positing food truck review data</param>
-        public FoodTruckReviewsController(ILogger<FoodTruckReviewsController> logger, IMapper mapper, IFoodTruckService foodTruckService)
-            : base(logger, mapper)
-        {
-            _foodTruckService = foodTruckService;
-        }
-
-
-        private readonly IFoodTruckService _foodTruckService;
+        private readonly IFoodTruckService _foodTruckService = foodTruckService;
 
 
         /// <summary>

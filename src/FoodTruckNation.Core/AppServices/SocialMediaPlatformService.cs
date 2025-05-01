@@ -6,16 +6,9 @@ using DavidBerry.Framework.Functional;
 
 namespace FoodTruckNation.Core.AppServices
 {
-    public class SocialMediaPlatformService : ISocialMediaPlatformService
+    public class SocialMediaPlatformService(ISocialMediaPlatformRepository repository) : ISocialMediaPlatformService
     {
-
-        public SocialMediaPlatformService(ISocialMediaPlatformRepository repository)
-        {
-            _socialMediaPlatformRepository = repository;
-        }
-
-
-        private readonly ISocialMediaPlatformRepository _socialMediaPlatformRepository;
+        private readonly ISocialMediaPlatformRepository _socialMediaPlatformRepository = repository;
 
 
         public Result<List<SocialMediaPlatform>> GetAllSocialMediaPlatforms()

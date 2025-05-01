@@ -14,29 +14,25 @@ namespace FoodTruckNationApi.FoodTrucks.Schedules
     /// <summary>
     /// Controller for managing schedules of food trucks.
     /// </summary>
+    /// <remarks>
+    /// Initializes a new instance of the <see cref="FoodTruckSchedulesController"/> class.
+    /// </remarks>
+    /// <param name="logger">The logger instance.</param>
+    /// <param name="mapper">The AutoMapper instance.</param>
+    /// <param name="scheduleService">The schedule service for managing food truck schedules.</param>
+    /// <param name="dateTimeProvider">The date-time provider for current date and time.</param>
     [Produces("application/json")]
     [Route("api/FoodTrucks/{foodTruckId}/Schedules")]
     [ApiVersion("1.0")]
     [ApiVersion("1.1")]
-    public class FoodTruckSchedulesController : ApiControllerBase
+    public class FoodTruckSchedulesController(
+        ILogger<FoodTruckSchedulesController> logger,
+        IMapper mapper,
+        IScheduleService scheduleService,
+        IDateTimeProvider dateTimeProvider) : ApiControllerBase(logger, mapper)
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="FoodTruckSchedulesController"/> class.
-        /// </summary>
-        /// <param name="logger">The logger instance.</param>
-        /// <param name="mapper">The AutoMapper instance.</param>
-        /// <param name="scheduleService">The schedule service for managing food truck schedules.</param>
-        /// <param name="dateTimeProvider">The date-time provider for current date and time.</param>
-        public FoodTruckSchedulesController(ILogger<FoodTruckSchedulesController> logger, IMapper mapper,
-            IScheduleService scheduleService, IDateTimeProvider dateTimeProvider)
-            : base(logger, mapper)
-        {
-            _dateTimeProvider = dateTimeProvider;
-            _scheduleService = scheduleService;
-        }
-
-        private readonly IDateTimeProvider _dateTimeProvider;
-        private readonly IScheduleService _scheduleService;
+        private readonly IDateTimeProvider _dateTimeProvider = dateTimeProvider;
+        private readonly IScheduleService _scheduleService = scheduleService;
 
         #region Route Name Constants
 
@@ -51,7 +47,5 @@ namespace FoodTruckNationApi.FoodTrucks.Schedules
         internal const string GET_SINGLE_FOOD_TRUCK_SCHEDULE = "GetFoodTruckScheduleById";
 
         #endregion
-
-        // The rest of the methods already have XML comments and do not need changes.
     }
 }

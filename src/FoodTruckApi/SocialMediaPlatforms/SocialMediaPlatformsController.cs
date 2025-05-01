@@ -17,19 +17,10 @@ namespace FoodTruckNationApi.SocialMediaPlatforms
     [Produces("application/json")]
     [Route("api/SocialMediaPlatforms")]
     [ApiVersion("1.1")]
-    public class SocialMediaPlatformsController : ApiControllerBase
+    public class SocialMediaPlatformsController(ILogger<SocialMediaPlatformsController> logger, IMapper mapper,
+        ISocialMediaPlatformService socialMediaPlatformService) : ApiControllerBase(logger, mapper)
     {
-
-
-        public SocialMediaPlatformsController(ILogger<SocialMediaPlatformsController> logger, IMapper mapper,
-            ISocialMediaPlatformService socialMediaPlatformService)
-            : base(logger, mapper)
-        {
-            _socialMediaPlatformService = socialMediaPlatformService;
-        }
-
-
-        private readonly ISocialMediaPlatformService _socialMediaPlatformService;
+        private readonly ISocialMediaPlatformService _socialMediaPlatformService = socialMediaPlatformService;
 
 
         #region Route Names

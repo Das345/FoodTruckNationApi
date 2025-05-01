@@ -7,15 +7,9 @@ using DavidBerry.Framework.Data;
 
 namespace FoodTruckNation.Data.EF.Repositories
 {
-    public class FoodTruckRepository : IFoodTruckRepository
+    public class FoodTruckRepository(FoodTruckContext context) : IFoodTruckRepository
     {
-        public FoodTruckRepository(FoodTruckContext context)
-        {
-            _foodTruckContext = context;
-        }
-
-
-        private readonly FoodTruckContext _foodTruckContext;
+        private readonly FoodTruckContext _foodTruckContext = context;
 
 
         public IList<FoodTruck> GetAllFoodTrucks()

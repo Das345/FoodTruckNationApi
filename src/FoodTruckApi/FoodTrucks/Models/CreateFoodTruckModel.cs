@@ -13,9 +13,12 @@ namespace FoodTruckNationApi.FoodTrucks
     public class CreateFoodTruckModel
     {
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateFoodTruckModel"/> class.
+        /// </summary>
         public CreateFoodTruckModel()
         {
-            Tags = new List<string>();
+            Tags = [];
         }
 
         /// <summary>
@@ -47,9 +50,15 @@ namespace FoodTruckNationApi.FoodTrucks
     }
 
 
+    /// <summary>
+    /// Validator class for the <see cref="CreateFoodTruckModel"/> class.
+    /// Ensures that the properties of the model meet the required validation rules.
+    /// </summary>
     public class CreateFoodTruckModelValidator : AbstractValidator<CreateFoodTruckModel>
     {
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateFoodTruckModelValidator"/> class.
+        /// </summary>
         public CreateFoodTruckModelValidator()
         {
             RuleFor(f => f.Name)
@@ -64,12 +73,10 @@ namespace FoodTruckNationApi.FoodTrucks
                 .NotEmpty().WithMessage("The food truck must have a website")
                 .Matches(FoodTruck.WEBSITE_VALIDATION).WithMessage("You must input a valid website url");
 
-
             RuleForEach(f => f.Tags)
                 .NotNull().WithMessage("Tags cannot be empty")
                 .Matches(Tag.TAG_TEXT_REGEX).WithMessage("Tags can only contain characters and spaces");
         }
-
     }
 
 
