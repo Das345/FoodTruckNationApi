@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using AutoMapper;
 using FluentValidation;
 using FoodTruckNation.Core.Commands;
@@ -8,7 +6,7 @@ using FoodTruckNation.Core.Domain;
 
 namespace FoodTruckNationApi.FoodTrucks
 {
-
+    
     /// <summary>
     /// Model class representing the data needed to create a new FoodTruck
     /// </summary>
