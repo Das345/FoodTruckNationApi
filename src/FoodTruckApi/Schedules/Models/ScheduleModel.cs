@@ -44,6 +44,10 @@ namespace FoodTruckNationApi.Schedules
 
         #region Nested Types - Location
 
+        
+        /// <summary>
+        /// Represents the location details for a schedule
+        /// </summary>
         public class LocationModel
         {
             /// <summary>
