@@ -48,7 +48,9 @@ namespace FoodTruckNationApi.FoodTrucks.Schedules
 
 
         #region Nested Types
-
+        /// <summary>
+        /// Represents the location details for a food truck schedule.
+        /// </summary>        
         public class LocationModel
         {
             /// <summary>
